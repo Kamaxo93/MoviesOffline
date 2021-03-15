@@ -1,8 +1,10 @@
-package com.camacho.moviesoffline;
+package com.camacho.moviesoffline.ui.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.camacho.moviesoffline.R;
 
 public class MainActivity extends AppCompatActivity {
 
