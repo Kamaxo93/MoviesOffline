@@ -1,4 +1,4 @@
-package com.camacho.moviesoffline;
+package com.camacho.moviesoffline.app;
 
 import android.app.Application;
 import android.content.Context;
