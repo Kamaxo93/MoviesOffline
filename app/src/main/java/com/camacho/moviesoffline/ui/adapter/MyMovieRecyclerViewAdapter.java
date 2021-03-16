@@ -1,15 +1,17 @@
 package com.camacho.moviesoffline.ui.adapter;
 
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.ImageView;
 
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
 import com.camacho.moviesoffline.R;
-import com.camacho.moviesoffline.data.MovieEntity;
+import com.camacho.moviesoffline.data.local.entity.MovieEntity;
+import com.camacho.moviesoffline.data.remote.ApiConstant;
 
 import java.util.List;
 
@@ -34,29 +36,29 @@ public class MyMovieRecyclerViewAdapter extends RecyclerView.Adapter<MyMovieRecy
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
+        Glide.with(content)
+                .load(ApiConstant.IMAGE_API_PREFIX + holder.mItem.getPosterPath())
+        .into(holder.imgCover);
     }
-
+    public void setData(List<MovieEntity> movies) {
+        this.mValues = movies;
+        notifyDataSetChanged();
+    }
     @Override
     public int getItemCount() {
-        return mValues.size();
+        return mValues != null ? mValues.size() : 0;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
-        public final TextView mIdView;
-        public final TextView mContentView;
+        public final ImageView imgCover;
         public MovieEntity mItem;
 
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            mIdView = view.findViewById(R.id.item_number);
-            mContentView = view.findViewById(R.id.content);
+            imgCover = view.findViewById(R.id.fragment_item__img__img_movie);
         }
 
-        @Override
-        public String toString() {
-            return super.toString() + " '" + mContentView.getText() + "'";
-        }
     }
 }
